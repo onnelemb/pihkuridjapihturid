@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="et">
 <head>
   <meta charset="UTF-8" />
@@ -17,12 +17,7 @@
       --light-text: #64748b;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: system-ui, -apple-system, sans-serif;
       background: var(--bg);
@@ -30,14 +25,8 @@
       min-height: 100vh;
       line-height: 1.5;
     }
+    .container { max-width: 720px; margin: 0 auto; padding: 20px; }
 
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    /* Parooli leht */
     #password-screen {
       min-height: 100vh;
       display: flex;
@@ -51,154 +40,93 @@
       padding: 40px;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      width: 100%;
-      max-width: 420px;
+      width: 100%; max-width: 420px;
       text-align: center;
     }
 
-    h1 {
-      font-size: 2.1rem;
-      margin-bottom: 1.2rem;
-      color: var(--accent);
-    }
+    h1 { font-size: 2.1rem; margin-bottom: 1.2rem; color: var(--accent); }
 
     input[type="password"] {
-      width: 100%;
-      padding: 14px;
-      font-size: 1.1rem;
-      border: 2px solid var(--border);
-      border-radius: 8px;
-      margin: 1.5rem 0;
+      width: 100%; padding: 14px; font-size: 1.1rem;
+      border: 2px solid var(--border); border-radius: 8px; margin: 1.5rem 0;
     }
 
     input[type="password"]:focus {
-      outline: none;
-      border-color: var(--accent);
+      outline: none; border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
     }
 
     button {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 14px 32px;
-      font-size: 1.1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.2s;
+      background: var(--accent); color: white; border: none;
+      padding: 14px 32px; font-size: 1.1rem; border-radius: 8px;
+      cursor: pointer; transition: background 0.2s;
     }
 
-    button:hover {
-      background: #2563eb;
-    }
+    button:hover { background: #2563eb; }
 
-    /* Põhivaade */
-    #main-screen {
-      display: none;
-    }
+    #main-screen { display: none; }
 
     header {
-      background: white;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 24px;
+      background: white; padding: 16px 0;
+      border-bottom: 1px solid var(--border); margin-bottom: 24px;
     }
 
     header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
     }
 
-    h2 {
-      font-size: 1.6rem;
-      color: var(--accent);
-    }
+    h2 { font-size: 1.6rem; color: var(--accent); }
 
     .small-btn {
-      background: transparent;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 8px 16px;
-      font-size: 0.95rem;
+      background: transparent; color: var(--accent);
+      border: 1px solid var(--accent); padding: 8px 16px; font-size: 0.95rem;
     }
 
-    .small-btn:hover {
-      background: var(--primary);
-    }
+    .small-btn:hover { background: var(--primary); }
 
     #messages {
-      background: white;
-      border-radius: 12px;
-      padding: 24px;
-      min-height: 400px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      background: white; border-radius: 12px; padding: 24px;
+      min-height: 400px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
       margin-bottom: 24px;
     }
 
     .message {
-      padding: 16px;
-      border-bottom: 1px solid var(--primary);
-      font-size: 1.05rem;
+      padding: 16px; border-bottom: 1px solid var(--primary); font-size: 1.05rem;
     }
 
     .message time {
-      display: block;
-      font-size: 0.82rem;
-      color: var(--light-text);
-      margin-bottom: 6px;
+      display: block; font-size: 0.82rem; color: var(--light-text); margin-bottom: 6px;
     }
 
-    .message:last-child {
-      border-bottom: none;
-    }
+    .message:last-child { border-bottom: none; }
 
     form {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
+      background: white; padding: 20px; border-radius: 12px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
 
     textarea {
-      width: 100%;
-      min-height: 110px;
-      padding: 14px;
-      font-size: 1.05rem;
-      border: 2px solid var(--border);
-      border-radius: 8px;
-      resize: vertical;
+      width: 100%; min-height: 110px; padding: 14px; font-size: 1.05rem;
+      border: 2px solid var(--border); border-radius: 8px; resize: vertical;
       margin-bottom: 12px;
     }
 
     textarea:focus {
-      outline: none;
-      border-color: var(--accent);
+      outline: none; border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
     }
 
     .bottom-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.9rem;
-      color: var(--light-text);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem; color: var(--light-text);
     }
 
-    #char-count {
-      font-weight: 500;
-    }
-
-    #status {
-      color: var(--accent);
-      font-weight: 500;
-    }
+    #char-count { font-weight: 500; }
+    #status { color: var(--accent); font-weight: 500; }
 
     .empty {
-      text-align: center;
-      color: var(--light-text);
-      padding: 60px 20px;
-      font-size: 1.1rem;
+      text-align: center; color: var(--light-text);
+      padding: 60px 20px; font-size: 1.1rem;
     }
   </style>
 </head>
@@ -211,7 +139,7 @@
       
       <input type="password" id="password-input" placeholder="Parool" autocomplete="off">
       
-      <button onclick="checkPassword()">Sisene</button>
+      <button id="login-btn">Sisene</button>
     </div>
   </div>
 
@@ -220,7 +148,7 @@
       <div class="container">
         <h2>Pihikamber</h2>
         <div>
-          <button class="small-btn" onclick="logout()">Välja</button>
+          <button class="small-btn" id="logout-btn">Välja</button>
         </div>
       </div>
     </header>
@@ -246,13 +174,15 @@
   </div>
 
   <script>
-    const SUPABASE_URL    = 'https://bmsgzgrdhwjnsvdwiqgu.supabase.co';
+    const SUPABASE_URL = 'https://bmsgzgrdhwjnsvdwiqgu.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJtc2d6Z3JkaHdqbnN2ZHdpcWd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2NTU0OTMsImV4cCI6MjA4OTIzMTQ5M30.2o7ZN0OlOJ4zdNDkeLQCGC05r9MZo_tef9y4i-_yWBA';
 
-    const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     const PASSWORD = "aklass2ga";
 
+    // ────────────────────────────────────────────────
+    // Parooli kontroll
     function checkPassword() {
       const input = document.getElementById("password-input").value.trim();
       if (input === PASSWORD) {
@@ -265,6 +195,7 @@
       }
     }
 
+    // Väljalogimine
     function logout() {
       if (confirm("Välja minna?")) {
         localStorage.removeItem("pihikamber_access");
@@ -272,39 +203,42 @@
       }
     }
 
+    // Laadi pihid
     async function loadMessages() {
-      const { data, error } = await supabase
-        .from('pihid')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(80);
+      try {
+        const { data, error } = await supabaseClient
+          .from('pihid')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(80);
 
-      const messagesDiv = document.getElementById('messages');
-      messagesDiv.innerHTML = '';
+        const messagesDiv = document.getElementById('messages');
+        messagesDiv.innerHTML = '';
 
-      if (error) {
-        messagesDiv.innerHTML = '<div class="empty">Viga: ' + error.message + '</div>';
-        console.error(error);
-        return;
-      }
+        if (error) throw error;
 
-      if (!data || data.length === 0) {
-        messagesDiv.innerHTML = '<div class="empty">Tahvel on veel tühi...<br>Ole esimene!</div>';
-        return;
-      }
+        if (!data || data.length === 0) {
+          messagesDiv.innerHTML = '<div class="empty">Tahvel on veel tühi...<br>Ole esimene!</div>';
+          return;
+        }
 
-      data.forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'message';
-        const date = new Date(p.created_at).toLocaleString('et-EE', {
-          dateStyle: 'short',
-          timeStyle: 'short'
+        data.forEach(p => {
+          const div = document.createElement('div');
+          div.className = 'message';
+          const date = new Date(p.created_at).toLocaleString('et-EE', {
+            dateStyle: 'short',
+            timeStyle: 'short'
+          });
+          div.innerHTML = `<time>${date}</time>${p.text.replace(/\n/g, '<br>')}`;
+          messagesDiv.appendChild(div);
         });
-        div.innerHTML = `<time>${date}</time>${p.text.replace(/\n/g, '<br>')}`;
-        messagesDiv.appendChild(div);
-      });
+      } catch (err) {
+        console.error("Laadimise viga:", err);
+        document.getElementById('messages').innerHTML = '<div class="empty">Viga: ' + (err.message || 'midagi läks valesti') + '</div>';
+      }
     }
 
+    // Saada piht
     async function sendPiht(e) {
       e.preventDefault();
       const textarea = document.getElementById('piht-text');
@@ -320,29 +254,28 @@
       const now = Date.now();
       const last = Number(localStorage.getItem('lastPiht') || 0);
 
-      if (now - last < 120 * 1000) {
+      if (now - last < 120000) {
         status.textContent = 'Oota 2 minutit enne järgmist pihti';
         setTimeout(() => status.textContent = '', 3000);
         return;
       }
 
-      const { error } = await supabase
-        .from('pihid')
-        .insert([{ text }]);
+      try {
+        const { error } = await supabaseClient
+          .from('pihid')
+          .insert([{ text }]);
 
-      if (error) {
-        status.textContent = 'Viga: ' + (error.message || 'midagi läks valesti');
-        console.error(error);
-        return;
+        if (error) throw error;
+
+        localStorage.setItem('lastPiht', now);
+        textarea.value = '';
+        updateCharCount();
+        status.textContent = 'Piht saadetud ✓';
+        setTimeout(() => status.textContent = '', 2200);
+      } catch (err) {
+        console.error(" saatmise viga:", err);
+        status.textContent = 'Viga: ' + (err.message || 'midagi läks valesti');
       }
-
-      localStorage.setItem('lastPiht', now);
-      textarea.value = '';
-      updateCharCount();
-      // loadMessages();   // real-time uuendab ise
-
-      status.textContent = 'Piht saadetud ✓';
-      setTimeout(() => status.textContent = '', 2200);
     }
 
     function updateCharCount() {
@@ -351,23 +284,31 @@
     }
 
     // Real-time kuulamine
-    supabase
+    supabaseClient
       .channel('public:pihid')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'pihid' }, () => {
         loadMessages();
       })
       .subscribe();
 
-    // Alglaadimine
+    // ────────────────────────────────────────────────
+    // Event listenerid
     window.addEventListener('load', () => {
+      const pwScreen = document.getElementById('password-screen');
+      const mainScreen = document.getElementById('main-screen');
+
       if (localStorage.getItem('pihikamber_access') === 'granted') {
-        document.getElementById('password-screen').style.display = 'none';
-        document.getElementById('main-screen').style.display = 'block';
+        pwScreen.style.display = 'none';
+        mainScreen.style.display = 'block';
         loadMessages();
       }
 
       document.getElementById('piht-form').addEventListener('submit', sendPiht);
       document.getElementById('piht-text').addEventListener('input', updateCharCount);
+
+      // onclick asemel parem kasutada addEventListener
+      document.getElementById('login-btn').addEventListener('click', checkPassword);
+      document.getElementById('logout-btn').addEventListener('click', logout);
     });
   </script>
 </body>
