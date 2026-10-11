@@ -1,282 +1,327 @@
 <!DOCTYPE html>
 <html lang="et">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pihikamber</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>pihikamber</title>
+<style>
 
-  <!-- Supabase kliendi laadimine -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <style>
-    :root {
-      --bg: #f8fbff;
-      --primary: #e6f0ff;
-      --accent: #3b82f6;
-      --text: #1e293b;
-      --border: #cbd5e1;
-      --light-text: #64748b;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      line-height: 1.5;
-    }
-    .container { max-width: 720px; margin: 0 auto; padding: 20px; }
-    #password-screen {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: white;
-    }
-    .login-box {
-      background: white;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      width: 100%; max-width: 420px;
-      text-align: center;
-    }
-    h1 { font-size: 2.1rem; margin-bottom: 1.2rem; color: var(--accent); }
-    input[type="password"] {
-      width: 100%; padding: 14px; font-size: 1.1rem;
-      border: 2px solid var(--border); border-radius: 8px; margin: 1.5rem 0;
-    }
-    input[type="password"]:focus {
-      outline: none; border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
-    }
-    button {
-      background: var(--accent); color: white; border: none;
-      padding: 14px 32px; font-size: 1.1rem; border-radius: 8px;
-      cursor: pointer; transition: background 0.2s;
-    }
-    button:hover { background: #2563eb; }
-    #main-screen { display: none; }
-    header {
-      background: white; padding: 16px 0;
-      border-bottom: 1px solid var(--border); margin-bottom: 24px;
-    }
-    header .container { display: flex; justify-content: space-between; align-items: center; }
-    h2 { font-size: 1.6rem; color: var(--accent); }
-    .small-btn {
-      background: transparent; color: var(--accent);
-      border: 1px solid var(--accent); padding: 8px 16px; font-size: 0.95rem;
-    }
-    .small-btn:hover { background: var(--primary); }
-    #messages {
-      background: white; border-radius: 12px; padding: 24px;
-      min-height: 400px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      margin-bottom: 24px;
-    }
-    .message {
-      padding: 16px; border-bottom: 1px solid var(--primary); font-size: 1.05rem;
-    }
-    .message time {
-      display: block; font-size: 0.82rem; color: var(--light-text); margin-bottom: 6px;
-    }
-    .message:last-child { border-bottom: none; }
-    form {
-      background: white; padding: 20px; border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-    textarea {
-      width: 100%; min-height: 110px; padding: 14px; font-size: 1.05rem;
-      border: 2px solid var(--border); border-radius: 8px; resize: vertical;
-      margin-bottom: 12px;
-    }
-    textarea:focus {
-      outline: none; border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
-    }
-    .bottom-row {
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.9rem; color: var(--light-text);
-    }
-    #char-count { font-weight: 500; }
-    #status { color: var(--accent); font-weight: 500; }
-    .empty {
-      text-align: center; color: var(--light-text);
-      padding: 60px 20px; font-size: 1.1rem;
-    }
-  </style>
+
+/*m2lestades pihikamber.com'i. rip flyhigh vms*/
+/*#florianwahl #salajanebaar #matrix #kakshotdogiigakastmega #oole #trakuinice #kumme?kumme-kumme?*/
+
+html, body {
+  overflow: hidden;
+  touch-action: manipulation;
+  overscroll-behavior: none;
+}
+
+body { 
+  font-family: monospace; 
+  margin:0; 
+  overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+  background: #f8f8f8;
+}
+.hidden { display:none; }
+.center {
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  font-size: 1.15em;
+}
+input, button, textarea {
+  width:100%;
+  max-width:380px;
+  margin-top:12px;
+  padding:15px;
+  font-size: 18px;
+  border-radius: 0;
+  -webkit-appearance: none;
+  border: 1px solid #999;
+  background: #fefefe;
+  color: #111;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.04);
+}
+textarea {
+  height:120px;
+  resize:none;
+}
+button {
+  background: #e8e8e8;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid #888;
+  transition: all 0.18s ease-in-out;
+}
+button:hover { background: #ddd; border-color: #666; }
+button:active { transform: scale(0.96); background: #d0d0d0; border-color: #555; }
+button:disabled { opacity: 0.6; cursor: not-allowed; background: #eee; }
+
+#messages {
+  width:100%;
+  max-width:460px;
+  height:420px;
+  overflow-y:auto;
+  background: #fff;
+  padding: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  position: relative;
+}
+.message {
+  border-top: 1px solid #eee;
+  padding: 12px 0;
+  position: relative;           /*pihi nr jaoks vajalikvist*/
+  min-height: 60px;
+}
+.message small { color: #777; font-size: 0.85em; }
+.piht-nr {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 0.9em;
+  color: #999;
+  font-weight: bold;
+  background: rgba(255,255,255,0.7);
+  padding: 2px 6px;
+  border-radius: 3px;
+  z-index: 1;
+}
+
+.like-btn {
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.45em;
+  margin-left: 8px;
+  display: inline-block;
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+.like-btn.liked { color: #e74c3c; }
+.like-btn:hover { opacity: 0.85; }
+.like-count { font-size: 0.95em; color: #777; margin-left: 5px; }
+
+#cooldown-msg {
+  color: #e74c3c;
+  font-size: 0.95em;
+  margin-top: 6px;
+  min-height: 1.2em;
+  text-align: center;
+}
+</style>
 </head>
 <body>
 
-  <div id="password-screen">
-    <div class="login-box">
-      <h1>Pihikamber</h1>
-      <p style="margin-bottom:1.5rem; color:#64748b;">Sisesta parool</p>
-      <input type="password" id="password-input" placeholder="Parool" autocomplete="off">
-      <button onclick="checkPassword()">Sisene</button>
-    </div>
+<!-- PAGE 1 -->
+<div id="page1" class="center">
+  <center>youkiyou<br/>kui oled uustulnud sangar,<br/>on salasonaks yks mees, aga ta<br/>pole lihtsalt mees...<br/>ta on siuke andega mees<br/><br/></center>
+  <input id="password" type="password" placeholder="parool">
+  <button id="enterBtn">ava</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="center hidden" style="display:none; flex-direction:column;">
+  <div id="messages"></div>
+  <div style="width:100%; max-width:460px; margin-top:10px;">
+    <textarea id="messageInput" placeholder="pne tilka..."></textarea>
+    <button id="sendBtn">pihi!</button>
+    <div id="cooldown-msg"></div>
   </div>
+</div>
 
-  <div id="main-screen">
-    <header>
-      <div class="container">
-        <h2>Pihikamber</h2>
-        <div>
-          <button class="small-btn" onclick="logout()">Välja</button>
-        </div>
-      </div>
-    </header>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script>
+//config
+const firebaseConfig = {
+  apiKey: "SIIN",
+  authDomain: "SIIN",
+  projectId: "pihukamber"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-    <div class="container">
-      <div id="messages"></div>
+//i got 2 fones
+document.addEventListener('gesturestart', function (e) {
+  e.preventDefault();
+});
 
-      <form id="piht-form">
-        <textarea 
-          id="piht-text" 
-          maxlength="120" 
-          placeholder="Kirjuta oma piht siia... (max 120 tähemärki)"
-        ></textarea>
+//1min cooldown
+let cooldownInterval = null;
+function startCooldown(secondsLeft) {
+  const msgEl = document.getElementById("cooldown-msg");
+  const btn = document.getElementById("sendBtn");
+  btn.disabled = true;
+  msgEl.textContent = `aitah kirjuta ${secondsLeft} sek prst uuesti`;
 
-        <div class="bottom-row">
-          <div id="char-count">0 / 120</div>
-          <button type="submit">Saada</button>
-        </div>
-
-        <div id="status" style="margin-top:12px; min-height:1.4em;"></div>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    // Supabase seadistus
-    const SUPABASE_URL = 'https://bmsgzgrdhwjnsvdwiqgu.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJtc2d6Z3JkaHdqbnN2ZHdpcWd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2NTU0OTMsImV4cCI6MjA4OTIzMTQ5M30.2o7ZN0OlOJ4zdNDkeLQCGC05r9MZo_tef9y4i-_yWBA';
-
-    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    const PASSWORD = "aklass2ga";
-
-    // Parooli kontroll
-    function checkPassword() {
-      const input = document.getElementById("password-input").value.trim();
-      if (input === PASSWORD) {
-        localStorage.setItem("pihikamber_access", "granted");
-        document.getElementById("password-screen").style.display = "none";
-        document.getElementById("main-screen").style.display = "block";
-        loadMessages();
-      } else {
-        alert("Vale parool");
-      }
+  if (cooldownInterval) clearInterval(cooldownInterval);
+  cooldownInterval = setInterval(() => {
+    secondsLeft--;
+    if (secondsLeft <= 0) {
+      clearInterval(cooldownInterval);
+      btn.disabled = false;
+      msgEl.textContent = "";
+    } else {
+      msgEl.textContent = `aitah kirjuta ${secondsLeft} sek prst uuesti`;
     }
+  }, 1000);
+}
 
-    // Väljalogimine
-    function logout() {
-      if (confirm("Välja minna?")) {
-        localStorage.removeItem("pihikamber_access");
-        location.reload();
-      }
-    }
+window.addEventListener("load", () => {
+  const lastSent = parseInt(localStorage.getItem("lastSent") || "0");
+  const now = Date.now();
+  const left = 60000 - (now - lastSent);
+  if (left > 0) startCooldown(Math.ceil(left / 1000));
+});
 
-    // Laadi pihid
-    async function loadMessages() {
-      const messagesDiv = document.getElementById('messages');
-      messagesDiv.innerHTML = '<div class="empty">Laadin...</div>';
+//pass
+document.getElementById("enterBtn").addEventListener("click", function() {
+  const pass = document.getElementById("password").value;
+  if (pass === "tyngamees") {             //sa nq sitaks pd aga sitaks taku vana kui sa inspectisid webi et see pass leida. respect vana tra
+    const page1 = document.getElementById("page1");
+    page1.style.transition = "opacity 0.4s ease";
+    page1.style.opacity = "0";
+    setTimeout(() => {
+      page1.style.display = "none";
+      const page2 = document.getElementById("page2");
+      page2.style.display = "flex";
+      page2.style.opacity = "0";
+      void page2.offsetWidth;
+      page2.style.transition = "opacity 0.4s ease";
+      page2.style.opacity = "1";
+    }, 420);
+  } else {
+    alert("k6tt pd!");
+  }
+});
+let isSending = false; //global lock?
 
-      try {
-        const { data, error } = await sb
-          .from('pihid')
-          .select('*')
-          .order('created_at', { ascending: false })
-          .limit(80);
+document.getElementById("sendBtn").addEventListener("click", async function() {
+  if (isSending) return;
+  isSending = true;
 
-        if (error) throw error;
+  const COOLDOWN = 60000;
+  let lastSent = parseInt(localStorage.getItem("lastSent") || "0");
+  const now = Date.now();
+  const left = COOLDOWN - (now - lastSent);
 
-        messagesDiv.innerHTML = '';
+  if (left > 0) {
+    startCooldown(Math.ceil(left / 1000));
+    isSending = false;
+    return;
+  }
 
-        if (!data || data.length === 0) {
-          messagesDiv.innerHTML = '<div class="empty">Tahvel on veel tühi...<br>Ole esimene!</div>';
-          return;
-        }
+  const input = document.getElementById("messageInput");
+  const text = input.value.trim();
+  if (!text) {
+    isSending = false;
+    return;
+  }
 
-        data.forEach(p => {
-          const div = document.createElement('div');
-          div.className = 'message';
-          const date = new Date(p.created_at).toLocaleString('et-EE', {
-            dateStyle: 'short',
-            timeStyle: 'short'
-          });
-          div.innerHTML = `<time>${date}</time>${p.text.replace(/\n/g, '<br>')}`;
-          messagesDiv.appendChild(div);
-        });
-      } catch (err) {
-        console.error("Laadimise viga:", err);
-        messagesDiv.innerHTML = '<div class="empty">Viga: ' + (err.message || 'midagi läks valesti') + '</div>';
-      }
-    }
-
-    // Saada piht
-    async function sendPiht(e) {
-      e.preventDefault();
-      const textarea = document.getElementById('piht-text');
-      const text = textarea.value.trim();
-      const status = document.getElementById('status');
-
-      if (!text) {
-        status.textContent = 'Kirjuta midagi...';
-        setTimeout(() => status.textContent = '', 1800);
-        return;
-      }
-
-      const now = Date.now();
-      const last = Number(localStorage.getItem('lastPiht') || 0);
-
-      if (now - last < 120000) {
-        status.textContent = 'Oota 2 minutit enne järgmist pihti';
-        setTimeout(() => status.textContent = '', 3000);
-        return;
-      }
-
-      try {
-        const { error } = await sb
-          .from('pihid')
-          .insert([{ text }]);
-
-        if (error) throw error;
-
-        localStorage.setItem('lastPiht', now);
-        textarea.value = '';
-        document.getElementById('char-count').textContent = '0 / 120';
-        status.textContent = 'Piht saadetud ✓';
-        setTimeout(() => status.textContent = '', 2200);
-      } catch (err) {
-        console.error("Saatmise viga:", err);
-        status.textContent = 'Viga: ' + (err.message || 'midagi läks valesti');
-      }
-    }
-
-    function updateCharCount() {
-      const len = document.getElementById('piht-text').value.length;
-      document.getElementById('char-count').textContent = len + ' / 120';
-    }
-
-    // Reaalaegne kuulamine (uued pihid ilmuvad automaatselt)
-    sb
-      .channel('public:pihid')
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'pihid' }, () => {
-        loadMessages();
-      })
-      .subscribe();
-
-    // Alglaadimine
-    window.addEventListener('load', () => {
-      if (localStorage.getItem('pihikamber_access') === 'granted') {
-        document.getElementById('password-screen').style.display = 'none';
-        document.getElementById('main-screen').style.display = 'block';
-        loadMessages();
-      }
-
-      document.getElementById('piht-form').addEventListener('submit', sendPiht);
-      document.getElementById('piht-text').addEventListener('input', updateCharCount);
+  try {
+    const pihtNr = await db.runTransaction(async (transaction) => {
+      const counterRef = db.collection("counters").doc("pihid");
+      const counterDoc = await transaction.get(counterRef);
+      let lastId = counterDoc.exists ? (counterDoc.data().lastId || 0) : 0;
+      const newId = lastId + 1;
+      transaction.set(counterRef, { lastId: newId }, { merge: true });
+      return newId;
     });
-  </script>
+
+    await db.collection("messages").add({
+      text: text,
+      time: now,
+      likes: 0,
+      pihtNr: pihtNr
+    });
+
+    localStorage.setItem("lastSent", now);
+    input.value = "";
+    startCooldown(COOLDOWN / 1000);
+
+  } catch (err) {
+    console.error("Viga:", err);
+  } finally {
+    isSending = false;
+  }
+});
+
+//realtime load vms
+db.collection("messages").onSnapshot(snapshot => {
+  const el = document.getElementById("messages");
+  el.innerHTML = "";
+  const list = [];
+  snapshot.forEach(doc => {
+    list.push({ id: doc.id, ...doc.data() });
+  });
+  list.sort((a,b) => b.time - a.time);
+
+  const likedMessages = JSON.parse(localStorage.getItem("likedMessages") || "[]");
+
+  list.forEach(m => {
+    if (!m.text || !m.time) return;
+    const div = document.createElement("div");
+    div.className = "message";
+    const d = new Date(m.time);
+    const t = d.getDate() + "." + (d.getMonth()+1) + " " +
+              d.getHours().toString().padStart(2,"0") + ":" +
+              d.getMinutes().toString().padStart(2,"0");
+
+    const pihtNumber = m.pihtNr != null ? `#${m.pihtNr.toString().padStart(4, '0')}` : "#????";
+    const likes = m.likes || 0;
+    const isLiked = likedMessages.includes(m.id);
+    const heart = isLiked ? "♥" : "♡";
+    const heartClass = isLiked ? "liked" : "";
+
+    div.innerHTML = `
+      <small>${t}</small>
+      <span class="piht-nr">${pihtNumber}</span>
+      <br>
+      ${m.text}
+      <div style="margin-top:8px;">
+        <span class="like-btn ${heartClass}" data-id="${m.id}">${heart}</span>
+        <span class="like-count">${likes > 0 ? likes : ''}</span>
+      </div>
+    `;
+    el.appendChild(div);
+
+    //facebook tix
+    const btn = div.querySelector(".like-btn");
+    btn.addEventListener("click", function() {
+      const msgId = this.dataset.id;
+      let likedArr = JSON.parse(localStorage.getItem("likedMessages") || "[]");
+      let newLikes = likes;
+
+      if (this.classList.contains("liked")) {
+        //unlike
+        this.textContent = "♡";
+        this.classList.remove("liked");
+        newLikes = Math.max(0, (parseInt(this.nextElementSibling.textContent) || 1) - 1);
+        this.nextElementSibling.textContent = newLikes > 0 ? newLikes : '';
+        likedArr = likedArr.filter(id => id !== msgId);
+        db.collection("messages").doc(msgId).update({ likes: firebase.firestore.FieldValue.increment(-1) });
+      } else {
+        //like
+        this.textContent = "♥";
+        this.classList.add("liked");
+        newLikes = (parseInt(this.nextElementSibling.textContent) || 0) + 1;
+        this.nextElementSibling.textContent = newLikes;
+        this.style.transform = "scale(1.4)";
+        setTimeout(() => { this.style.transform = ""; }, 180);
+        likedArr.push(msgId);
+        db.collection("messages").doc(msgId).update({ likes: firebase.firestore.FieldValue.increment(1) });
+      }
+
+      localStorage.setItem("likedMessages", JSON.stringify(likedArr));
+    });
+  });
+});
+</script>
 </body>
 </html>
